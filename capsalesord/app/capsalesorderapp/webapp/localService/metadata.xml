@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="SalesService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="SalesOrderSet" EntityType="SalesService.SalesOrderSet"/>
+            </EntityContainer>
+            <EntityType Name="SalesOrderSet">
+                <Key>
+                    <PropertyRef Name="UUID"/>
+                </Key>
+                <Property Name="UUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="SalesOrderID" Type="Edm.String" MaxLength="10"/>
+                <Property Name="description" Type="Edm.String" MaxLength="40"/>
+                <Property Name="customerName" Type="Edm.String" MaxLength="50"/>
+                <Property Name="SalesOrderType" Type="Edm.String" MaxLength="4"/>
+                <Property Name="SalesOrganization" Type="Edm.String" MaxLength="4"/>
+                <Property Name="DistrbutionChannel" Type="Edm.String" MaxLength="2"/>
+                <Property Name="status" Type="Edm.String" MaxLength="10" DefaultValue="Draft"/>
+                <Property Name="CreditLimitUsed" Type="Edm.Decimal" Scale="2" Precision="10"/>
+                <Property Name="NetAmount" Type="Edm.Decimal" Scale="2" Precision="10"/>
+                <Property Name="CustomerReference" Type="Edm.String" MaxLength="100"/>
+                <Property Name="DocumentDate" Type="Edm.Date"/>
+                <Property Name="RequestedDeliveryDate" Type="Edm.Date"/>
+                <Property Name="OrderReason" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ShippingConditions" Type="Edm.String" MaxLength="2"/>
+                <Property Name="IncoTerms" Type="Edm.String" MaxLength="4"/>
+                <Property Name="TermsOfPayment" Type="Edm.String" MaxLength="4"/>
+                <Property Name="PricingDate" Type="Edm.Date"/>
+            </EntityType>
+            <Annotations Target="SalesService.SalesOrderSet/DocumentDate">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SalesService.SalesOrderSet/PricingDate">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
