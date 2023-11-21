@@ -4,7 +4,6 @@ entity SalesOrder {
     key UUID                  : UUID;
         SalesOrderID          : String(10);
         description           : String(40);
-        customerName          : String(50);
         SalesOrderType        : String(4);
         SalesOrganization     : String(4);
         DistrbutionChannel    : String(2);

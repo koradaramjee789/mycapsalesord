@@ -1,6 +1,7 @@
 using SalesService as service from '../../srv/salesservice';
 
 annotate service.SalesOrderSet with @(
+    odata.draft.enabled : true,
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
