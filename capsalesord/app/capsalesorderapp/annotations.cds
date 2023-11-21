@@ -15,11 +15,6 @@ annotate service.SalesOrderSet with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'customerName',
-            Value : customerName,
-        },
-        {
-            $Type : 'UI.DataField',
             Label : 'SalesOrderType',
             Value : SalesOrderType,
         },
@@ -43,11 +38,6 @@ annotate service.SalesOrderSet with @(
                 $Type : 'UI.DataField',
                 Label : 'description',
                 Value : description,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'customerName',
-                Value : customerName,
             },
             {
                 $Type : 'UI.DataField',
