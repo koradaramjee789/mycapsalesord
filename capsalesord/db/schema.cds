@@ -1,4 +1,10 @@
 namespace my.business;
+using { Currency } from '@sap/cds/common';
+
+type Amount {
+  value : Decimal(10,3);
+  currency : Currency;
+}
 
 entity SalesOrder {
     key UUID                  : UUID;
@@ -8,8 +14,9 @@ entity SalesOrder {
         SalesOrganization     : String(4);
         DistrbutionChannel    : String(2);
         status                : String(10) default 'Draft';
-        CreditLimitUsed       : Decimal(10, 2);
-        NetAmount             : Decimal(10, 2);
+        CreditLimitUsed       : Amount;
+        NetAmount             : Amount;
+        Currency              : Currency ;
         CustomerReference     : String(100);
         DocumentDate          : Date default $now;
         RequestedDeliveryDate : Date;
