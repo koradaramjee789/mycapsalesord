@@ -23,6 +23,17 @@ annotate service.SalesOrderSet with @(
             Label : 'SalesOrganization',
             Value : SalesOrganization,
         },
+    ],
+    UI.DataPoint #DPQStatus : {
+        $Type : 'UI.DataPointType',
+        Title : 'Status',
+        Value : status,
+    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.DataPoint#DPQStatus',
+        },
     ]
 );
 annotate service.SalesOrderSet with @(
