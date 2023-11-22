@@ -34,7 +34,58 @@ annotate service.SalesOrderSet with @(
             $Type : 'UI.ReferenceFacet',
             Target : '@UI.DataPoint#DPQStatus',
         },
-    ]
+    ],
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'General Information',
+            Target : '@UI.FieldGroup#GeneratedGroup1',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Additional Information',
+            ID : 'AddiInfo',
+            Target : '@UI.FieldGroup#FGQAdditionalInfo',
+        },
+    ],
+    UI.FieldGroup #FGQAdditionalInfo : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CustomerReference,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DocumentDate,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : IncoTerms,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : OrderReason,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PricingDate,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : RequestedDeliveryDate,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ShippingConditions,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : TermsOfPayment,
+            },
+        ],
+    }
 );
 annotate service.SalesOrderSet with @(
     UI.FieldGroup #GeneratedGroup1 : {
@@ -121,13 +172,5 @@ annotate service.SalesOrderSet with @(
                 Value : PricingDate,
             },
         ],
-    },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup1',
-        },
-    ]
+    }
 );
