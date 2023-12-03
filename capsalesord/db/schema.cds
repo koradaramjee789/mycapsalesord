@@ -1,10 +1,7 @@
 namespace my.business;
-using { Currency } from '@sap/cds/common';
 
-type Amount {
-  value : Decimal(10,3);
-  currency : Currency;
-}
+//using { Currency } from '@sap/cds/common';
+
 
 entity SalesOrder {
     key UUID                  : UUID;
@@ -14,9 +11,9 @@ entity SalesOrder {
         SalesOrganization     : String(4);
         DistrbutionChannel    : String(2);
         status                : String(10) default 'Draft';
-        CreditLimitUsed       : Amount;
-        NetAmount             : Amount;
-        Currency              : Currency ;
+        CreditLimitUsed       : Decimal(15, 2);
+        NetAmount             : Decimal(12, 2);
+        Currency              : String(3) ;
         CustomerReference     : String(100);
         DocumentDate          : Date default $now;
         RequestedDeliveryDate : Date;
@@ -26,6 +23,30 @@ entity SalesOrder {
         TermsOfPayment        : String(4);
         PricingDate           : Date default $now;
 
+        Items                 : Composition of many SalesOrderItems
+                                    on Items.parent = $self;
 // Composition: SalesOrder has many SalesOrderItems
 // items           : Composition of many SalesOrderItem on items.salesOrder = $self ;
 }
+
+entity SalesOrderItems {
+    key parent                : Association to SalesOrder;
+    key ItemUUID              : UUID;
+        ItemNo                : String(5);
+        Product               : String(10);
+        RequestedQuantity     : Integer;
+        ConfirmedQuantity     : Integer;
+        Price                 : Decimal(10, 2);
+        Currency              : String(3);
+        ItemCategory          : String(10);
+        RequestedDeliveryDate : Date;
+        ConfirmedDeliveryDate : Date;
+        Availability          : String(10);
+}
+
+  entity Currencies  {
+    key code      : String(3) @(title : '{i18n>CurrencyCode}');
+        symbol    : String(5) @(title : '{i18n>CurrencySymbol}');
+        name      : String(20);
+        description : String(40);
+  }

@@ -5,22 +5,22 @@ annotate service.SalesOrderSet with @(
     UI.LineItem                     : [
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderID',
+            Label: 'Sales Order ID',
             Value: SalesOrderID,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'description',
+            Label: 'Description',
             Value: description,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderType',
+            Label: 'Sales Order Type',
             Value: SalesOrderType,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrganization',
+            Label: 'Sales Organization',
             Value: SalesOrganization,
         },
     ],
@@ -45,6 +45,12 @@ annotate service.SalesOrderSet with @(
             Label : 'Additional Information',
             ID    : 'AddiInfo',
             Target: '@UI.FieldGroup#FGQAdditionalInfo',
+        },
+                {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Items',
+            ID    : 'Items',
+            Target: 'Items/@UI.LineItem',
         },
     ],
     UI.FieldGroup #FGQAdditionalInfo: {
@@ -99,27 +105,27 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
     Data : [
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderID',
+            Label: 'Sales Order ID',
             Value: SalesOrderID,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'description',
+            Label: 'Description',
             Value: description,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderType',
+            Label: 'Sales Order Type',
             Value: SalesOrderType,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrganization',
+            Label: 'Sales Organization',
             Value: SalesOrganization,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'DistrbutionChannel',
+            Label: 'Distrbution Channel',
             Value: DistrbutionChannel,
         },
         {
@@ -129,21 +135,138 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
         },
         {
             $Type: 'UI.DataField',
-            Label: 'CreditLimitUsed',
-            Value: CreditLimitUsed_value,
+            Label: 'Credit Limit Used',
+            Value: CreditLimitUsed,
 
 
         },
         {
             $Type: 'UI.DataField',
-            Label: 'NetAmount',
-            Value: NetAmount_value,
+            Label: 'Net Amount',
+            Value: NetAmount,
+
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Currency',
+            Value: Currency,
+            
 
         },
     ],
 });
-
+annotate service.Currencies with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : symbol,
+            Label : 'Symbol',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : code,
+            Label : 'Code',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : name,
+            Label : 'Name',
+        },        
+    ]
+);
 annotate service.SalesOrderSet with {
-    NetAmount       @Measures: {ISOCurrency: CreditLimitUsed_currency.code, };
-    CreditLimitUsed @Measures: {ISOCurrency: NetAmount_currency.code, }
+    NetAmount       @Measures: {ISOCurrency: Currency};
+    CreditLimitUsed @Measures: {ISOCurrency: Currency};
+    Currency @( Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : Currency,
+            },            
+        ],
+        CollectionPath : 'Currencies',
+        SearchSupported : true,
+        Label : 'Currencies',
+    })
+}
+
+annotate service.SalesOrderItemSet with @(
+    UI.Facets  : [{
+        $Type : 'UI.ReferenceFacet',
+        Target: 'parent/@UI.LineItem',
+        Label : 'Items',
+        ID    : 'Items',
+    }, ],
+
+
+    UI.LineItem: [
+        {
+            $Type: 'UI.DataField',
+            Label: 'Item No',
+            Value: ItemNo,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Product',
+            Value: Product,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Requested Quantity',
+            Value: RequestedQuantity,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Confirmed Quantity',
+            Value: ConfirmedQuantity,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Price',
+            Value: Price,
+        },                
+        {
+            $Type: 'UI.DataField',
+            Label: 'Item Category',
+            Value: ItemCategory,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Requested Delivery Date',
+            Value: RequestedDeliveryDate,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Confirmed Delivery Date',
+            Value: ConfirmedDeliveryDate,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Availability',
+            Value: Availability,
+        },
+
+    ]
+);
+
+
+
+
+annotate service.SalesOrderItemSet with {
+    Price       @Measures: {ISOCurrency: Currency};
+    Currency @( Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : Currency,
+            },
+        ],
+        CollectionPath : 'Currencies',
+        SearchSupported : true,
+        Label : 'Currencies',
+    })
 }
