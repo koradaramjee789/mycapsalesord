@@ -47,5 +47,6 @@ entity SalesOrderItems {
   entity Currencies  {
     key code      : String(3) @(title : '{i18n>CurrencyCode}');
         symbol    : String(5) @(title : '{i18n>CurrencySymbol}');
-        minorUnit : Int16     @(title : '{i18n>CurrencyMinorUnit}');
+        name      : String(20);
+        description : String(40);
   }
