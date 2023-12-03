@@ -167,6 +167,11 @@ annotate service.Currencies with @(
             Value : code,
             Label : 'Code',
         },
+        {
+            $Type : 'UI.DataField',
+            Value : name,
+            Label : 'Name',
+        },        
     ]
 );
 annotate service.SalesOrderSet with {
