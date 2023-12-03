@@ -1,6 +1,6 @@
 namespace my.business;
 
-using {Currency} from '@sap/cds/common';
+//using { Currency } from '@sap/cds/common';
 
 
 entity SalesOrder {
@@ -13,7 +13,7 @@ entity SalesOrder {
         status                : String(10) default 'Draft';
         CreditLimitUsed       : Decimal(15, 2);
         NetAmount             : Decimal(12, 2);
-        Currency              : Currency;
+        Currency              : String(3) ;
         CustomerReference     : String(100);
         DocumentDate          : Date default $now;
         RequestedDeliveryDate : Date;
@@ -37,9 +37,15 @@ entity SalesOrderItems {
         RequestedQuantity     : Integer;
         ConfirmedQuantity     : Integer;
         Price                 : Decimal(10, 2);
-        Currency              : Currency;
+        Currency              : String(3);
         ItemCategory          : String(10);
         RequestedDeliveryDate : Date;
         ConfirmedDeliveryDate : Date;
         Availability          : String(10);
 }
+
+  entity Currencies  {
+    key code      : String(3) @(title : '{i18n>CurrencyCode}');
+        symbol    : String(5) @(title : '{i18n>CurrencySymbol}');
+        minorUnit : Int16     @(title : '{i18n>CurrencyMinorUnit}');
+  }

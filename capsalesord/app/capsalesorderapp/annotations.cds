@@ -149,18 +149,41 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
         {
             $Type: 'UI.DataField',
             Label: 'Currency',
-            Value: Currency.code,
+            Value: Currency,
             
 
         },
     ],
 });
-
+annotate service.Currencies with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : symbol,
+            Label : 'Symbol',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : code,
+            Label : 'Code',
+        },
+    ]
+);
 annotate service.SalesOrderSet with {
-    NetAmount       @Measures: {ISOCurrency: Currency.code};
-    CreditLimitUsed @Measures: {ISOCurrency: Currency.code};
+    NetAmount       @Measures: {ISOCurrency: Currency};
+    CreditLimitUsed @Measures: {ISOCurrency: Currency};
     Currency @( Common.ValueList : {
-        CollectionPath : 'Currencies' ,
+        $Type : 'Common.ValueListType',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : Currency,
+            },
+        ],
+        CollectionPath : 'Currencies',
+        SearchSupported : true,
+        Label : 'Currencies',
     })
 }
 
@@ -191,6 +214,16 @@ annotate service.SalesOrderItemSet with @(
         },
         {
             $Type: 'UI.DataField',
+            Label: 'Confirmed Quantity',
+            Value: ConfirmedQuantity,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Price',
+            Value: Price,
+        },                
+        {
+            $Type: 'UI.DataField',
             Label: 'ItemCategory',
             Value: ItemCategory,
         },
@@ -212,3 +245,23 @@ annotate service.SalesOrderItemSet with @(
 
     ]
 );
+
+
+
+
+annotate service.SalesOrderItemSet with {
+    Price       @Measures: {ISOCurrency: Currency};
+    Currency @( Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : Currency,
+            },
+        ],
+        CollectionPath : 'Currencies',
+        SearchSupported : true,
+        Label : 'Currencies',
+    })
+}
