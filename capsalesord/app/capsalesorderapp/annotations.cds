@@ -5,22 +5,22 @@ annotate service.SalesOrderSet with @(
     UI.LineItem                     : [
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderID',
+            Label: 'Sales Order ID',
             Value: SalesOrderID,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'description',
+            Label: 'Description',
             Value: description,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderType',
+            Label: 'Sales Order Type',
             Value: SalesOrderType,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrganization',
+            Label: 'Sales Organization',
             Value: SalesOrganization,
         },
     ],
@@ -105,27 +105,27 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
     Data : [
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderID',
+            Label: 'Sales Order ID',
             Value: SalesOrderID,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'description',
+            Label: 'Description',
             Value: description,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrderType',
+            Label: 'Sales Order Type',
             Value: SalesOrderType,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'SalesOrganization',
+            Label: 'Sales Organization',
             Value: SalesOrganization,
         },
         {
             $Type: 'UI.DataField',
-            Label: 'DistrbutionChannel',
+            Label: 'Distrbution Channel',
             Value: DistrbutionChannel,
         },
         {
@@ -135,14 +135,14 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
         },
         {
             $Type: 'UI.DataField',
-            Label: 'CreditLimitUsed',
+            Label: 'Credit Limit Used',
             Value: CreditLimitUsed,
 
 
         },
         {
             $Type: 'UI.DataField',
-            Label: 'NetAmount',
+            Label: 'Net Amount',
             Value: NetAmount,
 
         },
@@ -184,7 +184,7 @@ annotate service.SalesOrderSet with {
                 $Type : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : Currency,
-            },
+            },            
         ],
         CollectionPath : 'Currencies',
         SearchSupported : true,
@@ -204,7 +204,7 @@ annotate service.SalesOrderItemSet with @(
     UI.LineItem: [
         {
             $Type: 'UI.DataField',
-            Label: 'ItemNo',
+            Label: 'Item No',
             Value: ItemNo,
         },
         {
@@ -229,7 +229,7 @@ annotate service.SalesOrderItemSet with @(
         },                
         {
             $Type: 'UI.DataField',
-            Label: 'ItemCategory',
+            Label: 'Item Category',
             Value: ItemCategory,
         },
         {
