@@ -36,6 +36,7 @@ entity SalesOrderItems {
         Product               : String(10);
         RequestedQuantity     : Integer;
         ConfirmedQuantity     : Integer;
+        Uom                   : String(3);
         Price                 : Decimal(10, 2);
         Currency              : String(3);
         ItemCategory          : String(10);
