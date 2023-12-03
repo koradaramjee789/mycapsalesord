@@ -16,7 +16,7 @@ entity SalesOrder {
         status                : String(10) default 'Draft';
         CreditLimitUsed       : Amount;
         NetAmount             : Amount;
-        Currency              : Currency ;
+        Currency              : Currency  ;
         CustomerReference     : String(100);
         DocumentDate          : Date default $now;
         RequestedDeliveryDate : Date;
