@@ -46,6 +46,12 @@ annotate service.SalesOrderSet with @(
             ID    : 'AddiInfo',
             Target: '@UI.FieldGroup#FGQAdditionalInfo',
         },
+                {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Items',
+            ID    : 'Items',
+            Target: 'Items/@UI.LineItem',
+        },
     ],
     UI.FieldGroup #FGQAdditionalInfo: {
         $Type: 'UI.FieldGroupType',
@@ -130,20 +136,79 @@ annotate service.SalesOrderSet with @(UI.FieldGroup #GeneratedGroup1: {
         {
             $Type: 'UI.DataField',
             Label: 'CreditLimitUsed',
-            Value: CreditLimitUsed_value,
+            Value: CreditLimitUsed,
 
 
         },
         {
             $Type: 'UI.DataField',
             Label: 'NetAmount',
-            Value: NetAmount_value,
+            Value: NetAmount,
+
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Currency',
+            Value: Currency.code,
+            
 
         },
     ],
 });
 
 annotate service.SalesOrderSet with {
-    NetAmount       @Measures: {ISOCurrency: CreditLimitUsed_currency.code, };
-    CreditLimitUsed @Measures: {ISOCurrency: NetAmount_currency.code, }
+    NetAmount       @Measures: {ISOCurrency: Currency.code};
+    CreditLimitUsed @Measures: {ISOCurrency: Currency.code};
+    Currency @( Common.ValueList : {
+        CollectionPath : 'Currencies' ,
+    })
 }
+
+annotate service.SalesOrderItemSet with @(
+    UI.Facets  : [{
+        $Type : 'UI.ReferenceFacet',
+        Target: 'parent/@UI.LineItem',
+        Label : 'Items',
+        ID    : 'Items',
+    }, ],
+
+
+    UI.LineItem: [
+        {
+            $Type: 'UI.DataField',
+            Label: 'ItemNo',
+            Value: ItemNo,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Product',
+            Value: Product,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Requested Quantity',
+            Value: RequestedQuantity,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'ItemCategory',
+            Value: ItemCategory,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Requested Delivery Date',
+            Value: RequestedDeliveryDate,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Confirmed Delivery Date',
+            Value: ConfirmedDeliveryDate,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Availability',
+            Value: Availability,
+        },
+
+    ]
+);
