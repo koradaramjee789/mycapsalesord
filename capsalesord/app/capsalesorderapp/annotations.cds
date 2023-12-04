@@ -184,7 +184,15 @@ annotate service.SalesOrderSet with {
                 $Type : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : Currency,
-            },            
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'symbol',
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name',
+            },
         ],
         CollectionPath : 'Currencies',
         SearchSupported : true,
@@ -264,6 +272,14 @@ annotate service.SalesOrderItemSet with {
                 ValueListProperty : 'code',
                 LocalDataProperty : Currency,
             },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'symbol',                
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            }
         ],
         CollectionPath : 'Currencies',
         SearchSupported : true,
