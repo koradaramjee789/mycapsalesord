@@ -24,7 +24,8 @@
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "rkwatch" : "cds watch --profile hybrid",
-    "rkdeploy" : "cds deploy --to hana:mycapsalesord"
+    "rkdeploy" : "cds deploy --to hana:mycapsalesord",
+    "rkbind" : "cds bind -2 mycapsalesord:mycapsalesord-key"
   },
   "cds": {
     "requires": {

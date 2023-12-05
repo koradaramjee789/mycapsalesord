@@ -97,7 +97,6 @@
             "css": []
         },
         "routing": {
-            "config": {},
             "routes": [
                 {
                     "pattern": ":?query:",
@@ -125,7 +124,8 @@
                                         "route": "SalesOrderSetObjectPage"
                                     }
                                 }
-                            }
+                            },
+                            "initialLoad": "Auto"
                         }
                     }
                 },
