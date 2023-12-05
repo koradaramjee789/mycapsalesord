@@ -13,7 +13,7 @@ entity SalesOrder {
         status                : String(10) default 'Draft';
         CreditLimitUsed       : Decimal(15, 2);
         NetAmount             : Decimal(12, 2);
-        Currency              : String(3) ;
+        Currency              : String(3);
         CustomerReference     : String(100);
         DocumentDate          : Date default $now;
         RequestedDeliveryDate : Date;
@@ -45,9 +45,15 @@ entity SalesOrderItems {
         Availability          : String(10);
 }
 
-  entity Currencies  {
-    key code      : String(3) @(title : '{i18n>CurrencyCode}');
-        symbol    : String(5) @(title : '{i18n>CurrencySymbol}');
-        name      : String(20);
+entity Currencies {
+    key code        : String(3) @(title: '{i18n>CurrencyCode}');
+        symbol      : String(5) @(title: '{i18n>CurrencySymbol}');
+        name        : String(20);
         description : String(40);
-  }
+}
+
+entity ShippingConditions {
+    key code        : String(1);
+        name        : String(20);
+        description : String(40);
+};

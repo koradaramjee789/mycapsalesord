@@ -286,3 +286,23 @@ annotate service.SalesOrderItemSet with {
         Label : 'Currencies',
     })
 }
+annotate service.SalesOrderSet with {
+    ShippingConditions @Common.ValueList : {
+        $Type : 'Common.ValueListType',
+        Parameters : [
+            {
+                $Type : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : ShippingConditions,
+            },
+            {
+                $Type : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name',
+            },
+        ],
+        CollectionPath : 'ShippingConditions',
+        SearchSupported : true,
+        Label : 'Select Shipping Condition',
+    }
+};
+
